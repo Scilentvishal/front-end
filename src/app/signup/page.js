@@ -75,7 +75,7 @@ const page = () => {
               action="#"
               onSubmit={handleSubmit}
             >
-              <div>
+              {/* <div>
                 <label
                   htmlFor="name"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -92,7 +92,7 @@ const page = () => {
                   placeholder="John Smith"
                   required
                 />
-              </div>
+              </div> */}
               <div>
                 <label
                   htmlFor="email"
@@ -130,155 +130,18 @@ const page = () => {
                 />
               </div>
               <div>
-                <h4 className="text-white my-3">Hobbies</h4>
-                <div className="flex items-center">
-                  <input
-                    id="playing"
-                    type="checkbox"
-                    value="playing"
-                    name="hobbies"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="playing"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                  >
-                    Playing
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    id="study"
-                    type="checkbox"
-                    value="study"
-                    name="hobbies"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="study"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                  >
-                    Study
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    id="programming"
-                    type="checkbox"
-                    value="programming"
-                    name="hobbies"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="programming"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                  >
-                    Programming
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    id="teaching"
-                    type="checkbox"
-                    value="teaching"
-                    name="hobbies"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="teaching"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                  >
-                    Teaching
-                  </label>
-                </div>
-              </div>
-              <div>
-                <h4 className="text-white my-3">Gender</h4>
-
-                <div className="flex items-center mb-4">
-                  <input
-                    id="male"
-                    type="radio"
-                    value="Male"
-                    name="gender"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="male"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                  >
-                    Male
-                  </label>
-                </div>
-                <div className="flex items-center mb-4">
-                  <input
-                    id="female"
-                    type="radio"
-                    value="Female"
-                    name="gender"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="female"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                  >
-                    Female
-                  </label>
-                </div>
-                <div className="flex items-center mb-4">
-                  <input
-                    id="other"
-                    type="radio"
-                    value="Other"
-                    name="gender"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    onChange={handleChange}
-                  />
-                  <label
-                    htmlFor="other"
-                    className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                  >
-                    Other
-                  </label>
-                </div>
-              </div>
-              <div>
                 <label
-                  htmlFor="mobile"
+                  htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Enter Your Mobile
+                  Password
                 </label>
                 <input
-                  type="number"
-                  name="mobile"
-                  id="mobile"
-                  placeholder="eg: - 9933090789"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="profileImage"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Enter profile Url
-                </label>
-                <input
-                  type="text"
-                  name="profileImage"
-                  id="profileImage"
-                  placeholder="Enter Url"
-                  value={formData.profileImage}
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="••••••••"
+                  value={formData.password}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required

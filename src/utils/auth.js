@@ -39,3 +39,23 @@ export const isLogin = async () => {
     }
     return false;
   };
+
+export const getAllStudents = async () => {
+    const token = getCookie("token");
+    // console.log(`token: ${token}`);
+    if (token) {
+      try {
+        const res = await axios.post("http://localhost:5000/api/getStudents", null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        // console.log(res);
+        return res.data;
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        return false;
+      }
+    }
+    return false;
+  };

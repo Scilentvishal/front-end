@@ -1,4 +1,5 @@
 "use client";
+import DashMain from "@/components/DashMain";
 import { isLogin, logout } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,7 +18,7 @@ export default function Home() {
         router.push("/login");
       }
     };
-
+   
     authenticate()
   }, []);
 
@@ -29,14 +30,18 @@ export default function Home() {
   return (
     <main className="px-4  h-screen grid place-items-center">
       <div className="p-4 w-[400px] h-[250px] text-center space-y-4">
-        <h3>Hi {user?.email}, welcome {user?.name} </h3>
+        <h3>Hi {user?.email}, welcome</h3>
         <button
           className="bg-red-500 px-4 py-2 text-white"
           onClick={handleLogout}
         >
           Logout
         </button>
+
       </div>
+      <div className="bg-gray-300 p-1">
+      <DashMain />
+    </div>
     </main>
   );
 }
