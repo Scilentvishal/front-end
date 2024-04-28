@@ -3,6 +3,7 @@ import { isLogin } from "@/utils/auth";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -50,17 +51,19 @@ const Page = () => {
     }
 
     axios
-      .post("http://localhost:5000/api/addstudent", formDataWithImage, {
+      .post(`${process.env.NEXT_PUBLIC_BASE_UR}addstudent`, formDataWithImage, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
         console.log(res);
+        toast.success("Student Added Successfully");
         router.push("/");
       })
       .catch((err) => {
         console.log(err);
+         toast.error("Something Went Wrong");
       });
   };
 

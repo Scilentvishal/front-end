@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { isLogin, setAuthentication } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const [email, setEmail] = useState("");
@@ -13,16 +14,18 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:5000/api/login", {
+    axios.post(`${process.env.NEXT_PUBLIC_BASE_UR}login`, {
       email,
       password,
     }).then((res)=>{
       console.log(res?.data?.token);
       setAuthentication(res?.data?.token)
+      toast.success("Login successful");
       router.push('/')
       
     }).catch((err)=> {
       console.log(err)
+      toast.error("Something Went Wrong");
     })
   };
 

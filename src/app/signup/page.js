@@ -1,65 +1,55 @@
-"use client";
+"use client"
 import { isLogin } from "@/utils/auth";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 
 const page = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    hobbies: [],
-    gender: "",
-    mobile: "",
-    profileImage: ""
+    confirmPassword: "",
   });
-  const router = useRouter()
+  const router = useRouter();
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
-      if (checked) {
-        setFormData((prevData) => ({
-          ...prevData,
-          hobbies: [...prevData.hobbies, value],
-        }));
-      } else {
-        setFormData((prevData) => ({
-          ...prevData,
-          hobbies: prevData.hobbies.filter((hobby) => hobby !== value),
-        }));
-      }
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/api/register", formData).then((res)=>{
-      console.log(res)
-      router.push('/login')
-      
-    }).catch((err)=> {
-      console.log(err)
-    })
-    console.log(formData);
+    if (formData.password !== formData.confirmPassword) {
+      console.log("Passwords do not match");
+      return;
+    }
+
+    axios.post(`${process.env.NEXT_PUBLIC_BASE_UR}register`, formData)
+      .then((res) => {
+        console.log(res);
+        toast.success("Account Created successfully! Login Now");
+        router.push('/login');
+      })
+      .catch((err) => {
+        console.error("Registration failed:", err);
+        toast.error("Something Went Wrong");
+      });
   };
 
   useEffect(() => {
     const authenticate = async () => {
       const loggedIn = await isLogin();
-      console.log(loggedIn)
       if (loggedIn) {
-       router.push("/")
+        router.push("/");
       }
     };
 
-    authenticate()
+    authenticate();
   }, []);
 
   return (
@@ -75,24 +65,6 @@ const page = () => {
               action="#"
               onSubmit={handleSubmit}
             >
-              {/* <div>
-                <label
-                  htmlFor="name"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Your name
-                </label>
-                <input
-                  type="name"
-                  name="name"
-                  id="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="John Smith"
-                  required
-                />
-              </div> */}
               <div>
                 <label
                   htmlFor="email"
@@ -131,17 +103,17 @@ const page = () => {
               </div>
               <div>
                 <label
-                  htmlFor="password"
+                  htmlFor="confirmPassword"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Password
+                  Confirm Password
                 </label>
                 <input
                   type="password"
-                  name="password"
-                  id="password"
+                  name="confirmPassword"
+                  id="confirmPassword"
                   placeholder="••••••••"
-                  value={formData.password}
+                  value={formData.confirmPassword}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required

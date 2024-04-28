@@ -10,7 +10,7 @@ const DashMain = () => {
   const [students, setstudents] = useState([])
   useEffect(() => {
     
-    const students = async () => {
+    const student = async () => {
       const getstudents = await getAllStudents();
       console.log(getstudents)
       if (getstudents) {
@@ -18,7 +18,7 @@ const DashMain = () => {
        setstudents(getstudents)
       }
     };
-    students()
+    student()
   }, []);
 
   return (
